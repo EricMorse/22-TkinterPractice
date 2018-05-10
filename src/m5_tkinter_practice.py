@@ -2,8 +2,8 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Eric Morse.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
@@ -12,37 +12,52 @@ from tkinter import ttk
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # DONE: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
+    root = tkinter.Tk()
 
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # DONE: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
+    frame1 = ttk.Frame(root, padding=10)
+    frame1.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # DONE: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
+    go_forward_button = ttk.Button(frame1, text='Forward')
+    go_forward_button.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # DONE: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
+    print_stuff_button = ttk.Button(frame1, text='Hello')
+    print_stuff_button['command'] = (lambda:
+                                     print("Hello"))
+    print_stuff_button.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # DONE: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
+    my_entry_box = ttk.Entry(frame1)
+    my_entry_box.grid()
 
+    print_entry_button = ttk.Button(frame1, text='Print entry')
+    print_entry_button['command'] = (lambda:
+                                     print_contents(my_entry_box))
+    print_entry_button.grid()
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # DONE: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -64,10 +79,50 @@ def main():
     #      s = entry_box.get()
     #      n = int(s)
     ####################################################################
+    my_entry_box2 = ttk.Entry(frame1)
+    my_entry_box2.grid()
+
+    print_entry_button2 = ttk.Button(frame1, text='Print entry')
+    print_entry_button2['command'] = (lambda:
+                                     todo7(my_entry_box, my_entry_box2))
+    print_entry_button2.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # DONE: 8. As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
+    print_entry_button3 = ttk.Button(frame1, text='Print entry')
+    print_entry_button3['command'] = (lambda:
+                                      todo8(my_entry_box))
+    print_entry_button3.grid()
+    root.mainloop()
+
+def todo8(entry_box):
+    contents_of_entry_one = entry_box.get()
+    print(contents_of_entry_one[::-1])
+
+def todo7(entry_box, entry_box2):
+    contents_of_entry_one = entry_box.get()
+    s = entry_box2.get()
+    n = int(s)
+    for k in range(n):
+        print(contents_of_entry_one)
+
+
+def print_contents(entry_box):
+    """
+    Prints onto the Console the contents of the given ttk.Entry.
+
+    In this example, it is used as the function that is "CALLED BACK"
+    when an event (namely, the pressing of a certain Button) occurs.
+
+    Type hints:
+      :type entry_box: ttk.Entry
+    """
+    contents_of_entry_box = entry_box.get()
+    if contents_of_entry_box == "ok":
+        print("Hello")
+    else:
+        print("Goodbye")
 
 
 # ----------------------------------------------------------------------
